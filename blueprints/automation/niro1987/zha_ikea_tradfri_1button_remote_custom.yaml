@@ -35,6 +35,12 @@ blueprint:
       selector:
         action:
       default: []
+    double:
+      name: Double Press
+      description: The action to perform on Double Press
+      selector:
+        action:
+      default: []  
 
 mode: single
 max_exceeded: silent
@@ -66,6 +72,14 @@ action:
             default: !input long
           - delay:
               milliseconds: 500
-
+      # Double-Press
+      - conditions:
+          - condition: template
+            value_template: 'todo'
+        sequence:
+          - choose: []
+            default: !input double
+          - delay:
+              milliseconds: 500  
     # Any other event will cancel the repeat loops (i.e. releasing the [on|off] button)
     default: []
